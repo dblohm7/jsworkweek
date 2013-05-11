@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<window id="modulemem"
+        title="module memory test"
+	orient="horizontal"
+        xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+        >
+  <script type="application/javascript">
+    Components.utils.import("chrome://bench/content/module_0_exports.jsm");
+    Components.utils.import("chrome://bench/content/module_1_export.jsm");
+    Components.utils.import("chrome://bench/content/module_10_exports.jsm");
+    Components.utils.import("chrome://bench/content/module_50_exports.jsm");
+    Components.utils.import("chrome://bench/content/module_100_exports.jsm");
+    Components.utils.import("chrome://bench/content/module_250_exports.jsm");
+    Components.utils.import("chrome://bench/content/module_500_exports.jsm");
+    Components.utils.import("chrome://bench/content/module_1000_exports.jsm");
+    Components.utils.import("chrome://bench/content/module_10000_exports.jsm");
+    /*
+    Components.utils.import("resource://gre/modules/Services.jsm");
+    var sandbox;
+    function init()
+    {
+      sandbox = Components.utils.Sandbox(window, {sandboxName: "module.jsm"});
+      sandbox.window = window;
+      Services.scriptloader.loadSubScript("chrome://bench/content/module.jsm", sandbox);
+    }
+    */
+  </script>
+  <body xmlns="http://www.w3.org/1999/xhtml">
+  </body>
+</window>
