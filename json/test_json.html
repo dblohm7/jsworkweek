@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8"></meta>
+    <title>
+      JSON Test
+    </title>
+    <script language="javascript">
+      var worker = new Worker("test_json.js");
+      var results;
+
+      function initTest()
+      {
+        results = [document.getElementById("result0"),
+                   document.getElementById("result1")];
+        var btn = document.getElementById("start");
+        btn.disabled = false;
+        worker.onmessage = function(event) {
+          var data = event.data;
+          if (data.index == results.length) {
+            btn.disabled = false;
+            btn.textContent = "Restart";
+          } else {
+            results[data.index].textContent = data.msg;
+          }
+        };
+        worker.onerror = function(error) {
+          results[0].textContent = "Error: " + error.message;
+        };
+      }
+
+      function startTest()
+      {
+        var btn = document.getElementById("start");
+        btn.disabled = true;
+        btn.textContent = "Running...";
+        var iterField = document.getElementById("iterations");
+        var iterations = parseInt(iterField.value, 10);
+        worker.postMessage({iterations: iterations});
+      }
+    </script>
+    <!--script type="text/javascript" src="test_json.js"></script-->
+  </head>
+  <body onload="initTest();">
+    Iterations: <input id="iterations" type="text" inputmode="numeric" value="10000"></input>
+    <button id="start" onclick="startTest();">Start</button>
+    <p id="result0"></p>
+    <p id="result1"></p>
+  </body>
+</html>
